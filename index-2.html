@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>სექტორი.ge · ქართული სპორტი და ლაივ ცხრილი</title>
+<meta name="description" content="ეროვნული ლიგის ლაივ ცხრილი, სპორტული სიახლეები და კატალოგები.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#12a150;--gl:#7bd9a1;--r:#d8232a;--rl:#ff7a80;--bg:#0b0d0c;--card:#141816;--line:#26302a;--mute:#8a9a8f;--text:#f3f5f2;--soft:#b8c4bb}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Noto Sans Georgian',system-ui,sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}a:hover{color:#ff4a50}
+img{max-width:100%;display:block}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+
+/* ზედა ზოლი */
+.topbar{background:var(--r);color:#fff;font-size:13px;font-weight:700;padding:8px 24px;text-align:center}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#fff;margin-right:8px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+
+/* ჰედერი */
+header{border-bottom:3px solid var(--g)}
+.head{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between;padding:20px 24px}
+.logo{display:flex;align-items:center;gap:12px;font-size:26px;font-weight:800}
+.logo b{width:48px;height:48px;background:var(--g);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:24px}
+.logo span span{color:var(--g)}
+nav{display:flex;flex-wrap:wrap;gap:8px 28px;font-weight:700;font-size:15px}
+nav a:first-child{color:var(--g)}
+
+/* რეკლამის ადგილები */
+.ad{display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;border:2px dashed var(--g);color:var(--gl);font-weight:700;font-size:14px;padding:8px}
+.ad.red{border-color:var(--r);color:var(--rl)}
+.ad-top{height:90px;margin-top:24px}
+.ad-box{min-height:250px}
+.ad-tall{min-height:420px}
+.ad-wide{height:160px;margin-top:48px}
+
+/* განლაგება */
+.layout{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;margin-top:24px}
+.main{flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.side{flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:24px}
+
+/* სიახლეები */
+.hero{position:relative;background:#14301f;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;padding:32px;border-left:6px solid var(--r)}
+.hero h2{margin:0;font-size:32px;line-height:1.3;font-weight:800}
+.hero p{margin:12px 0 0;color:var(--soft)}
+.tag{align-self:flex-start;display:inline-block;background:var(--r);color:#fff;font-size:12px;font-weight:700;padding:4px 10px;margin-bottom:12px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{background:var(--card);border-top:4px solid var(--g);display:block}
+.card.red{border-top-color:var(--r)}
+.card .ph{height:170px;background:#1b2a21;display:flex;align-items:center;justify-content:center;color:#6c7d71;font-size:13px}
+.card .body{padding:20px}
+.card small{font-size:12px;font-weight:700;color:var(--g)}
+.card.red small{color:var(--r)}
+.card h3{margin:8px 0 0;font-size:19px;line-height:1.4;font-weight:700}
+
+/* ცხრილი */
+.table{background:var(--card);border-top:4px solid var(--g)}
+.table-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.table-head h2{margin:0;font-size:18px;font-weight:800}
+.live{display:inline-flex;align-items:center;gap:6px;background:var(--r);color:#fff;font-size:11px;font-weight:800;padding:4px 8px}
+.live i{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.6s infinite}
+.scroll{overflow-x:auto}
+.row{display:grid;grid-template-columns:32px minmax(0,1fr) 34px 34px 34px 34px 42px;gap:4px;padding:11px 20px;font-size:14px;border-left:4px solid transparent;border-top:1px solid #1d2520;align-items:center;min-width:320px}
+.row.h{font-size:12px;font-weight:700;color:var(--mute);border-top:0;padding:10px 20px}
+.row.first{border-left-color:var(--g)}
+.row.down{border-left-color:var(--r)}
+.row span{text-align:center;color:var(--soft)}
+.row span:nth-child(1){text-align:left;font-weight:700;color:var(--mute)}
+.row span:nth-child(2){text-align:left;font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row span:nth-child(7){font-weight:800;color:var(--g)}
+.row.h span{color:var(--mute);font-weight:700}
+.table-foot{padding:12px 20px;font-size:12px;color:var(--mute);border-top:1px solid var(--line)}
+
+/* სექციები */
+.sec{margin-top:48px}
+.sec h2{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:26px;font-weight:800}
+.sec h2::before{content:"";width:6px;height:32px;background:var(--r)}
+.sec.g h2::before{background:var(--g)}
+.cat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.cat a{background:var(--card);border-bottom:4px solid var(--g)}
+.cat a:nth-child(even){border-bottom-color:var(--r)}
+.cat .ph{height:140px;background:#1b2a21;display:flex;align-items:center;justify-content:center;color:#6c7d71;font-size:13px}
+.cat div.t{padding:18px 20px}
+.cat h3{margin:0;font-size:18px}
+.cat p{margin:6px 0 0;font-size:14px;color:var(--mute)}
+
+footer{margin-top:64px;background:#050606;border-top:3px solid var(--r)}
+.foot{display:flex;flex-wrap:wrap;gap:24px 64px;justify-content:space-between;padding:40px 24px;color:var(--soft);font-size:14px;line-height:1.9}
+.foot strong{color:#fff}
+</style>
+</head>
+<body>
+
+<div class="topbar"><span class="dot"></span>LIVE · ეროვნული ლიგა · ცხრილი ავტომატურად ახლდება</div>
+
+<header>
+  <div class="wrap head">
+    <a class="logo" href="#"><svg viewBox="0 0 120 56" width="64" height="30" role="img" aria-label="სექტორი.ge"><path d="M34.0 47.0A30 30 0 0 1 48.8 34.2L53.3 45.3A18 18 0 0 0 44.4 53.0Z" fill="#d8232a"/><path d="M50.2 33.6A30 30 0 0 1 69.8 33.6L65.9 45.0A18 18 0 0 0 54.1 45.0Z" fill="#d8232a"/><path d="M71.2 34.2A30 30 0 0 1 86.0 47.0L75.6 53.0A18 18 0 0 0 66.7 45.3Z" fill="#d8232a"/><path d="M20.2 39.0A46 46 0 0 1 31.4 26.0L38.9 35.4A34 34 0 0 0 30.6 45.0Z" fill="#12a150"/><path d="M33.4 24.5A46 46 0 0 1 49.0 17.3L51.9 29.0A34 34 0 0 0 40.3 34.3Z" fill="#12a150"/><path d="M51.4 16.8A46 46 0 0 1 68.6 16.8L66.4 28.6A34 34 0 0 0 53.6 28.6Z" fill="#12a150"/><path d="M71.0 17.3A46 46 0 0 1 86.6 24.5L79.7 34.3A34 34 0 0 0 68.1 29.0Z" fill="#12a150"/><path d="M88.6 26.0A46 46 0 0 1 99.8 39.0L89.4 45.0A34 34 0 0 0 81.1 35.4Z" fill="#12a150"/><path d="M6.3 31.0A62 62 0 0 1 15.8 18.5L24.4 26.9A50 50 0 0 0 16.7 37.0Z" fill="#0e7a3c"/><path d="M18.2 16.2A62 62 0 0 1 31.0 7.2L36.6 17.8A50 50 0 0 0 26.3 25.1Z" fill="#0e7a3c"/><path d="M33.9 5.7A62 62 0 0 1 48.9 1.0L51.1 12.8A50 50 0 0 0 39.0 16.6Z" fill="#0e7a3c"/><path d="M52.1 0.5A62 62 0 0 1 67.9 0.5L66.3 12.4A50 50 0 0 0 53.7 12.4Z" fill="#0e7a3c"/><path d="M71.1 1.0A62 62 0 0 1 86.1 5.7L81.0 16.6A50 50 0 0 0 68.9 12.8Z" fill="#0e7a3c"/><path d="M89.0 7.2A62 62 0 0 1 101.8 16.2L93.7 25.1A50 50 0 0 0 83.4 17.8Z" fill="#0e7a3c"/><path d="M104.2 18.5A62 62 0 0 1 113.7 31.0L103.3 37.0A50 50 0 0 0 95.6 26.9Z" fill="#0e7a3c"/></svg><span>სექტორი<span>.ge</span></span></a>
+    <nav>
+      <a href="#table">ლაივ ცხრილი</a>
+      <a href="#news">სიახლეები</a>
+      <a href="#catalog">კატალოგი</a>
+      <a href="#contact">რეკლამა</a>
+      <a href="#contact">კონტაქტი</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- რეკლამა: მთავარი ბანერი (728x90). აქ ჩასვი რეკლამის კოდი ან <a><img></a> -->
+  <div class="ad ad-top" id="ad-top">რეკლამის ადგილი · 728×90</div>
+
+  <div class="layout">
+
+    <!-- სიახლეები -->
+    <section class="main" id="news">
+      <article class="hero">
+        <span class="tag">ეროვნული ლიგა</span>
+        <h2>მთავარი სიახლის სათაური</h2>
+        <p>აქ ჩაწერე მოკლე აღწერა მთავარი სიახლის შესახებ.</p>
+      </article>
+
+      <div class="grid2">
+        <a class="card" href="#">
+          <div class="ph">ფოტო</div>
+          <div class="body"><small>ნაკრები</small><h3>სიახლის სათაური</h3></div>
+        </a>
+        <a class="card red" href="#">
+          <div class="ph">ფოტო</div>
+          <div class="body"><small>ტრანსფერები</small><h3>სიახლის სათაური</h3></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- გვერდითი სვეტი -->
+    <aside class="side">
+      <section class="table" id="table">
+        <div class="table-head">
+          <h2>ეროვნული ლიგა · ცხრილი</h2>
+          <span class="live"><i></i>LIVE</span>
+        </div>
+        <div class="scroll">
+          <div class="row h"><span>#</span><span>გუნდი</span><span>თ</span><span>მ</span><span>ფ</span><span>წ</span><span>ქ</span></div>
+          <div id="rows"></div>
+        </div>
+        <div class="table-foot" id="status">იტვირთება...</div>
+      </section>
+
+      <div class="ad ad-box" id="ad-side1">რეკლამის ადგილი · 300×250</div>
+      <div class="ad red ad-tall" id="ad-side2">რეკლამის ადგილი · 300×600</div>
+    </aside>
+  </div>
+
+  <!-- კატალოგები -->
+  <section class="sec" id="catalog">
+    <h2>კატალოგები</h2>
+    <div class="cat">
+      <a href="#"><div class="ph">სურათი</div><div class="t"><h3>ფორმები და აქსესუარები</h3><p>გუნდების ოფიციალური ფორმები</p></div></a>
+      <a href="#"><div class="ph">სურათი</div><div class="t"><h3>ფეხსაცმელი</h3><p>ბუცები და სპორტული ფეხსაცმელი</p></div></a>
+      <a href="#"><div class="ph">სურათი</div><div class="t"><h3>სპორტული ინვენტარი</h3><p>ბურთები, ტრენაჟორები, აღჭურვილობა</p></div></a>
+      <a href="#"><div class="ph">სურათი</div><div class="t"><h3>ბილეთები</h3><p>ბილეთები მატჩებზე</p></div></a>
+    </div>
+  </section>
+
+  <div class="ad ad-wide" id="ad-wide">რეკლამის ადგილი · 970×160</div>
+
+  <!-- ბოლო სიახლეები -->
+  <section class="sec g">
+    <h2>ბოლო სიახლეები</h2>
+    <div class="grid2">
+      <a class="card" href="#"><div class="ph">ფოტო</div><div class="body"><small>მიმოხილვა</small><h3>სიახლის სათაური</h3></div></a>
+      <a class="card red" href="#"><div class="ph">ფოტო</div><div class="body"><small>ინტერვიუ</small><h3>სიახლის სათაური</h3></div></a>
+      <a class="card" href="#"><div class="ph">ფოტო</div><div class="body"><small>ანალიტიკა</small><h3>სიახლის სათაური</h3></div></a>
+    </div>
+  </section>
+</div>
+
+<footer id="contact">
+  <div class="wrap foot">
+    <div><strong style="font-size:22px">სექტორი<span style="color:var(--g)">.ge</span></strong><br>ქართული სპორტის სიახლეები და ლაივ ცხრილი</div>
+    <div><strong>რეკლამის განთავსება</strong><br>[თქვენი ელფოსტა]<br>[თქვენი ტელეფონი]</div>
+  </div>
+</footer>
+
+<script>
+/* ===== პარამეტრები =====
+   dataUrl: სადაც ცხრილის მონაცემებია.
+   - 'standings.json'  -> ფაილი საიტთან ერთად (ხელით ან ავტომატურად განახლებადი)
+   - Google Sheets-ის "Publish to web" CSV ბმული (სვეტები: გუნდი,თ,მ,ფ,წ,ქ)
+   - შენი API-ს ბმული, რომელიც იგივე JSON ფორმატს აბრუნებს
+   refreshSeconds: რამდენ წამში ერთხელ განახლდეს
+   relegation: ბოლო რამდენი გუნდი გამოიყოს წითლად */
+const CONFIG = { dataUrl: 'standings.json', refreshSeconds: 60, relegation: 2 };
+
+/* სარეზერვო მონაცემები: გამოჩნდება, თუ standings.json ვერ ჩაიტვირთა */
+const FALLBACK = [
+  { team: 'გუნდი 1',  p: 9, w: 7, d: 1, l: 1, pts: 22 },
+  { team: 'გუნდი 2',  p: 9, w: 6, d: 2, l: 1, pts: 20 },
+  { team: 'გუნდი 3',  p: 9, w: 5, d: 3, l: 1, pts: 18 },
+  { team: 'გუნდი 4',  p: 9, w: 5, d: 1, l: 3, pts: 16 },
+  { team: 'გუნდი 5',  p: 9, w: 4, d: 3, l: 2, pts: 15 },
+  { team: 'გუნდი 6',  p: 9, w: 3, d: 3, l: 3, pts: 12 },
+  { team: 'გუნდი 7',  p: 9, w: 3, d: 1, l: 5, pts: 10 },
+  { team: 'გუნდი 8',  p: 9, w: 2, d: 2, l: 5, pts: 8 },
+  { team: 'გუნდი 9',  p: 9, w: 1, d: 3, l: 5, pts: 6 },
+  { team: 'გუნდი 10', p: 9, w: 1, d: 1, l: 7, pts: 4 }
+];
+
+function parseCSV(text) {
+  const rows = text.trim().split(/\r?\n/).map(line =>
+    line.split(',').map(c => c.replace(/^"|"$/g, '').trim()));
+  if (rows.length && isNaN(Number(rows[0][1]))) rows.shift(); // სათაურის სტრიქონი
+  return rows.filter(r => r[0]).map(r => ({
+    team: r[0], p: +r[1], w: +r[2], d: +r[3], l: +r[4], pts: +r[5]
+  }));
+}
+
+function normalize(text) {
+  const t = text.trim();
+  if (t[0] === '[' || t[0] === '{') {
+    const j = JSON.parse(t);
+    return { teams: Array.isArray(j) ? j : j.teams, updated: j.updated || null };
+  }
+  return { teams: parseCSV(t), updated: null };
+}
+
+function cell(text) {
+  const s = document.createElement('span');
+  s.textContent = text;
+  return s;
+}
+
+function render(teams) {
+  const box = document.getElementById('rows');
+  box.textContent = '';
+  const sorted = teams.slice().sort((a, b) => b.pts - a.pts);
+  sorted.forEach((t, i) => {
+    const row = document.createElement('div');
+    row.className = 'row' + (i === 0 ? ' first' : '') + (i >= sorted.length - CONFIG.relegation ? ' down' : '');
+    [i + 1, t.team, t.p, t.w, t.d, t.l, t.pts].forEach(v => row.appendChild(cell(v)));
+    box.appendChild(row);
+  });
+}
+
+async function load() {
+  const status = document.getElementById('status');
+  try {
+    const sep = CONFIG.dataUrl.includes('?') ? '&' : '?';
+    const res = await fetch(CONFIG.dataUrl + sep + 't=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error(res.status);
+    const { teams, updated } = normalize(await res.text());
+    render(teams);
+    const d = updated ? new Date(updated) : new Date();
+    const hh = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    status.textContent = 'განახლდა: ' + hh;
+  } catch (e) {
+    render(FALLBACK);
+    status.textContent = 'სანიმუშო მონაცემები. რეალური ცხრილი მალე დაემატება.';
+  }
+}
+
+load();
+setInterval(load, CONFIG.refreshSeconds * 1000);
+</script>
+</body>
+</html>
