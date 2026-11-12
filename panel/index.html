@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ადმინ პანელი · სექტორი.ge</title>
+<style>
+:root{--g:#12a150;--gl:#7bd9a1;--r:#d8232a;--rl:#ff7a80;--bg:#0b0d0c;--card:#141816;--line:#26302a;--mute:#8a9a8f;--text:#f3f5f2;--soft:#b8c4bb}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans Georgian',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:3px solid var(--g);position:sticky;top:0;background:var(--bg);z-index:5}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.logo b{width:34px;height:34px;background:var(--g);color:var(--bg);display:flex;align-items:center;justify-content:center}
+.wrap{max-width:720px;margin:0 auto;padding:16px}
+.btn{border:0;background:var(--g);color:#04120a;font-weight:800;padding:13px 18px;font-size:15px;cursor:pointer;min-height:46px}
+.btn.red{background:var(--r);color:#fff}
+.btn.ghost{background:transparent;color:var(--soft);border:1px solid var(--line);font-weight:700}
+.btn.small{padding:8px 12px;min-height:36px;font-size:13px}
+.btn:disabled{opacity:.5}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-size:13px;font-weight:700;color:var(--soft)}
+.field small{color:var(--mute);font-size:12px}
+input[type=text],input[type=password],select,textarea{background:var(--card);border:1px solid var(--line);padding:12px;font-size:16px;width:100%;border-radius:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--g);outline-offset:0}
+textarea{min-height:220px;resize:vertical}
+textarea.short{min-height:84px}
+.check{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:15px}
+.check input{width:22px;height:22px;accent-color:var(--g)}
+.login{max-width:380px;margin:12vh auto 0;padding:0 16px}
+.login h1{font-size:22px;margin:0 0 20px}
+.err{color:var(--rl);font-size:14px;min-height:20px;margin:8px 0}
+.list{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.item{display:flex;gap:12px;background:var(--card);border-left:4px solid var(--g);padding:12px;cursor:pointer;align-items:stretch}
+.item.draft{border-left-color:var(--mute)}
+.item.feat{border-left-color:var(--r)}
+.thumb{width:84px;height:64px;background:#1b2a21;flex:none;object-fit:cover}
+.item h3{margin:0;font-size:16px;line-height:1.35;font-weight:700}
+.meta{font-size:12px;color:var(--mute);margin-top:4px}
+.badge{display:inline-block;font-size:11px;font-weight:800;padding:1px 7px;margin-right:6px;background:var(--g);color:#04120a}
+.badge.d{background:var(--line);color:var(--soft)}
+.badge.f{background:var(--r);color:#fff}
+.empty{color:var(--mute);text-align:center;padding:40px 0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top h2{margin:0;font-size:20px}
+
+/* bottom sheet */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:10}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:94vh;background:var(--bg);border-top:4px solid var(--g);z-index:11;display:flex;flex-direction:column;animation:up .2s ease-out;max-width:720px;margin:0 auto}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+.sheet-head h2{margin:0;font-size:18px}
+.sheet-body{overflow-y:auto;padding:16px;-webkit-overflow-scrolling:touch}
+.sheet-foot{display:flex;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line)}
+.sheet-foot .btn{flex:1}
+.preview{width:100%;max-height:200px;object-fit:cover;margin-bottom:10px;background:#1b2a21}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--g);color:#04120a;font-weight:800;padding:10px 18px;z-index:20}
+.toast.bad{background:var(--r);color:#fff}
+</style>
+</head>
+<body>
+
+<!-- login -->
+<section id="login" class="login" hidden>
+  <h1>ადმინ პანელი</h1>
+  <form id="login-form" autocomplete="on">
+    <div class="field">
+      <label for="pw">პაროლი</label>
+      <input type="password" id="pw" name="password" autocomplete="current-password" required>
+    </div>
+    <div class="err" id="login-err" role="alert"></div>
+    <button class="btn" type="submit" style="width:100%">შესვლა</button>
+  </form>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <div class="bar">
+    <div class="logo"><b>S</b><span>სექტორი.ge</span></div>
+    <div style="display:flex;gap:8px">
+      <a class="btn ghost small" href="/" target="_blank" rel="noopener" style="display:flex;align-items:center;text-decoration:none">საიტი</a>
+      <button class="btn ghost small" id="logout">გამოსვლა</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="top">
+      <h2>სიახლეები</h2>
+      <button class="btn" id="new">+ ახალი სიახლე</button>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="empty" id="empty" hidden>ჯერ სიახლე არ გაქვს. დააჭირე „+ ახალი სიახლე“.</div>
+  </div>
+</div>
+
+<!-- bottom sheet form -->
+<div id="overlay" class="overlay" hidden></div>
+<form id="sheet" class="sheet" hidden>
+  <div class="sheet-head">
+    <h2 id="sheet-title">ახალი სიახლე</h2>
+    <button type="button" class="btn ghost small" id="close">დახურვა</button>
+  </div>
+  <div class="sheet-body">
+    <div class="field">
+      <label for="f-title">სათაური</label>
+      <input type="text" id="f-title" maxlength="200" required>
+    </div>
+    <div class="field">
+      <label for="f-cat">კატეგორია</label>
+      <select id="f-cat"></select>
+    </div>
+    <div class="field">
+      <label>ფოტო</label>
+      <img class="preview" id="f-preview" alt="" hidden>
+      <input type="file" id="f-file" accept="image/jpeg,image/png,image/webp">
+      <small id="f-file-status">ფოტო ავტომატურად დაპატარავდება ატვირთვისას.</small>
+      <button type="button" class="btn ghost small" id="f-remove-img" hidden style="align-self:flex-start">ფოტოს მოხსნა</button>
+    </div>
+    <div class="field">
+      <label for="f-excerpt">მოკლე აღწერა</label>
+      <textarea id="f-excerpt" class="short" maxlength="300"></textarea>
+      <small>მაქსიმუმ 300 სიმბოლო. გამოჩნდება მთავარ გვერდზე და Google-ში.</small>
+    </div>
+    <div class="field">
+      <label for="f-body">ტექსტი</label>
+      <textarea id="f-body" required></textarea>
+      <small>აბზაცებს შორის დატოვე ცარიელი ხაზი.</small>
+    </div>
+    <label class="check"><input type="checkbox" id="f-feat"> მთავარი სიახლე (მთავარ გვერდზე დიდად გამოჩნდება)</label>
+    <label class="check"><input type="checkbox" id="f-pub" checked> გამოქვეყნებული</label>
+    <div class="err" id="sheet-err" role="alert"></div>
+  </div>
+  <div class="sheet-foot">
+    <button type="button" class="btn red" id="delete" hidden style="flex:0 0 auto">წაშლა</button>
+    <button type="submit" class="btn" id="save">შენახვა</button>
+  </div>
+</form>
+
+<script src="panel.js"></script>
+</body>
+</html>
